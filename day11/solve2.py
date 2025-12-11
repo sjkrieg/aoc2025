@@ -1,8 +1,10 @@
-# Straightforward DFS problem
-# We can also do some memoization though, since we would have repeated paths
-# For example, in the test example "ccc" has 3 paths to out
-# this means that any path leading to "ccc" can simply be multiplied by 3
-# as long as there are no cycles this should be great
+# From part 1 we now have to filter out paths that do not travel through the required nodes
+# This slightly complicates our DFS since now the count of valid paths from i -> out changes on its history
+# The easiest way is to just copy a list/buffer and pop the node once we visit it
+# But to be slightly more efficient (and to derust my bitwise operations) we'll use a bitvector instead
+# Basically we start the DFS having visited none of the required nodes
+# Whenever we visit a required node we xor it
+# Then we include the bitvector as part of the key for path_counts hash table
 
 import argparse
 
